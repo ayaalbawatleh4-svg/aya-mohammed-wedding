@@ -1,16 +1,24 @@
+```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>محمد و آية | دعوة زفاف</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
+
+*{
+  box-sizing:border-box
+}
+
+html{
+  scroll-behavior:smooth
+}
 
 body{
   margin:0;
@@ -61,7 +69,9 @@ body:after{
   pointer-events:none
 }
 
-.open-small{font-size:23px}
+.open-small{
+  font-size:23px
+}
 
 .open-names{
   font-size:62px;
@@ -142,7 +152,9 @@ section{
   position:relative
 }
 
-.bismillah{font-size:29px}
+.bismillah{
+  font-size:29px
+}
 
 .quran{
   max-width:760px;
@@ -186,7 +198,9 @@ section{
   border-bottom:1px solid #d5b25d
 }
 
-.day{font-size:29px}
+.day{
+  font-size:29px
+}
 
 .date{
   font-size:62px;
@@ -198,7 +212,9 @@ section{
   color:#e6d29b
 }
 
-.venue{font-size:68px}
+.venue{
+  font-size:68px
+}
 
 .address{
   font-size:22px;
@@ -242,43 +258,15 @@ section{
   color:#d9c18a
 }
 
-.gallery{
-  width:min(1000px,95%);
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:25px
+.final{
+  min-height:80vh
 }
 
-.gallery img{
-  width:100%;
-  height:430px;
-  object-fit:cover;
-  padding:6px;
-  background:#ead6a5;
-  border:1px solid #d4ae54;
-  opacity:.2;
-  transform:translateY(60px);
-  transition:1s
+.final-names{
+  font-size:70px
 }
-
-.gallery img.show{
-  opacity:1;
-  transform:none
-}
-
-.final{min-height:80vh}
-
-.final-names{font-size:70px}
 
 @media(max-width:700px){
-
-  .gallery{
-    grid-template-columns:1fr
-  }
-
-  .gallery img{
-    height:420px
-  }
 
   .names{
     font-size:78px
@@ -307,7 +295,9 @@ section{
   .inv{
     font-size:19px
   }
+
 }
+
 </style>
 </head>
 
@@ -334,20 +324,20 @@ section{
     اضغط لفتح الدعوة 🎵
   </button>
 
-  <div class="note">
-   
-  </div>
+  <div class="note"></div>
 
 </div>
 
-<!-- تم تعديل مسار الأغنية هنا -->
+
 <audio id="music" src="music.mp3" preload="auto" loop></audio>
 
 <button class="music" id="musicBtn" aria-label="إيقاف أو تشغيل الموسيقى">
   ♫
 </button>
 
+
 <div class="page">
+
 
 <section>
 
@@ -473,9 +463,6 @@ section{
 </section>
 
 
-
-
-
 <section class="final">
 
   <div class="line"></div>
@@ -500,6 +487,7 @@ section{
 
 </section>
 
+
 </div>
 
 
@@ -511,9 +499,8 @@ const openBtn = document.getElementById("openBtn");
 const musicBtn = document.getElementById("musicBtn");
 
 
+// تشغيل الدعوة والموسيقى
 openBtn.addEventListener("click", async function(){
-
-  /* ضغطة المستخدم تسمح للمتصفح بتشغيل الصوت */
 
   try{
 
@@ -534,6 +521,7 @@ openBtn.addEventListener("click", async function(){
 });
 
 
+// زر الموسيقى
 musicBtn.addEventListener("click",async function(){
 
   if(music.paused){
@@ -557,6 +545,7 @@ musicBtn.addEventListener("click",async function(){
 });
 
 
+// إعادة تشغيل الموسيقى عند انتهائها
 music.addEventListener("ended",()=>{
 
   music.currentTime = 0;
@@ -566,46 +555,145 @@ music.addEventListener("ended",()=>{
 });
 
 
+// ================================
+// السكرول التلقائي
+// ================================
+
+let autoScrolling = false;
+let animationFrame = null;
+
 function autoScroll(){
 
   const duration = 45000;
-  const start = scrollY;
-  const end = document.documentElement.scrollHeight - innerHeight;
+
+  const start = window.scrollY;
+
+  const end =
+    document.documentElement.scrollHeight - window.innerHeight;
+
   const distance = end - start;
 
   let t0 = null;
 
+  autoScrolling = true;
+
+
   function frame(t){
 
-    if(!t0)t0 = t;
+    if(!autoScrolling) return;
 
-    let p = Math.min((t-t0)/duration,1);
+    if(!t0)
+      t0 = t;
 
-    let e = p<.5
-      ? 2*p*p
-      : 1-Math.pow(-2*p+2,2)/2;
 
-    scrollTo(0,start+distance*e);
+    let p =
+      Math.min(
+        (t - t0) / duration,
+        1
+      );
 
-    if(p<1)
-      requestAnimationFrame(frame);
+
+    let e =
+      p < 0.5
+        ? 2 * p * p
+        : 1 - Math.pow(-2 * p + 2, 2) / 2;
+
+
+    window.scrollTo(
+      0,
+      start + distance * e
+    );
+
+
+    if(p < 1){
+
+      animationFrame =
+        requestAnimationFrame(frame);
+
+    }else{
+
+      autoScrolling = false;
+
+    }
 
   }
 
-  requestAnimationFrame(frame);
+
+  animationFrame =
+    requestAnimationFrame(frame);
 
 }
 
 
+// إذا المستخدم لمس الشاشة
+window.addEventListener(
+  "touchstart",
+  function(){
+
+    if(autoScrolling){
+
+      autoScrolling = false;
+
+      cancelAnimationFrame(animationFrame);
+
+    }
+
+  },
+  {passive:true}
+);
+
+
+// إذا المستخدم بدأ يحرك إصبعه
+window.addEventListener(
+  "touchmove",
+  function(){
+
+    if(autoScrolling){
+
+      autoScrolling = false;
+
+      cancelAnimationFrame(animationFrame);
+
+    }
+
+  },
+  {passive:true}
+);
+
+
+// إذا المستخدم استخدم عجلة الماوس
+window.addEventListener(
+  "wheel",
+  function(){
+
+    if(autoScrolling){
+
+      autoScrolling = false;
+
+      cancelAnimationFrame(animationFrame);
+
+    }
+
+  },
+  {passive:true}
+);
+
+
+// ================================
+// العد التنازلي
+// ================================
+
 const wedding =
-  new Date("2026-09-03T21:00:00").getTime();
+  new Date(
+    "2026-09-03T21:00:00"
+  ).getTime();
 
 
 function ar(n){
 
   return String(n).replace(
     /\d/g,
-    d=>"٠١٢٣٤٥٦٧٨٩"[d]
+    d => "٠١٢٣٤٥٦٧٨٩"[d]
   );
 
 }
@@ -613,46 +701,57 @@ function ar(n){
 
 function countdown(){
 
-  let d = Math.max(
-    0,
-    wedding-Date.now()
-  );
+  let d =
+    Math.max(
+      0,
+      wedding - Date.now()
+    );
+
 
   document.getElementById("days").textContent =
-    ar(Math.floor(d/86400000));
+    ar(
+      Math.floor(
+        d / 86400000
+      )
+    );
+
 
   document.getElementById("hours").textContent =
-    ar(Math.floor(d%86400000/3600000));
+    ar(
+      Math.floor(
+        d % 86400000 / 3600000
+      )
+    );
+
 
   document.getElementById("minutes").textContent =
-    ar(Math.floor(d%3600000/60000));
+    ar(
+      Math.floor(
+        d % 3600000 / 60000
+      )
+    );
+
 
   document.getElementById("seconds").textContent =
-    ar(Math.floor(d%60000/1000));
+    ar(
+      Math.floor(
+        d % 60000 / 1000
+      )
+    );
 
 }
 
 
 countdown();
 
-setInterval(countdown,1000);
-
-
-const observer =
-  new IntersectionObserver(
-    es=>es.forEach(e=>{
-      if(e.isIntersecting)
-        e.target.classList.add("show")
-    }),
-    {threshold:.15}
-  );
-
-
-document
-  .querySelectorAll(".gallery img")
-  .forEach(i=>observer.observe(i));
+setInterval(
+  countdown,
+  1000
+);
 
 </script>
 
 </body>
 </html>
+```
+
