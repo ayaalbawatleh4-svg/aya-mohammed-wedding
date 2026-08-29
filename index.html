@@ -7,140 +7,684 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
-*{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;background:#300713;color:#f1d48a;font-family:"Noto Nastaliq Urdu",serif;overflow-x:hidden}
-body:before{content:"";position:fixed;inset:0;z-index:-2;background:linear-gradient(#350714d9,#350714ee),url("https://images.unsplash.com/photo-1490750967868-88aa4486c946") center/cover no-repeat}
-body:after{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(circle,transparent,#1d0209aa)}
-#opening{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(#350714d9,#350714f5),url("https://images.unsplash.com/photo-1490750967868-88aa4486c946") center/cover;transition:opacity 1s,visibility 1s}
-#opening.hide{opacity:0;visibility:hidden;pointer-events:none}
-.open-small{font-size:23px}.open-names{font-size:62px;line-height:1.8}.line{width:230px;height:1px;background:#d8b45d;margin:18px auto;position:relative}.line:after{content:"✦";position:absolute;left:50%;top:-15px;transform:translateX(-50%);font-family:serif}
-.open-btn{padding:13px 48px;border-radius:50px;border:1px solid #e2c36c;background:#4a0b1b;color:#f2d889;font-family:inherit;font-size:22px;cursor:pointer}
-.note{margin-top:14px;font-size:14px;color:#d9c28c}
-.music{position:fixed;left:20px;bottom:20px;z-index:5000;width:56px;height:56px;border-radius:50%;border:1px solid #d8b45b;background:#450919;color:#f0ce70;font-size:21px;cursor:pointer}
-.page{max-width:1200px;margin:auto}.page:before{content:"";position:fixed;inset:12px;border:1px solid #d5af55;z-index:3000;pointer-events:none}
-section{min-height:100vh;padding:80px 25px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative}
-.bismillah{font-size:29px}.quran{max-width:760px;font-size:22px;line-height:2.5;color:#ead6a2}.quran small{display:block;color:#c8a95e}.names{font-size:105px;line-height:1.5;color:#f2ce6b}.and{font:42px Georgia,serif;color:#d8b45d}.inv{font-size:23px;line-height:2.3;color:#ead9ad}.title{font-size:55px;color:#edca6d;margin:10px 0 25px}.datebox{width:min(850px,95%);padding:35px 20px;border-top:1px solid #d5b25d;border-bottom:1px solid #d5b25d}.day{font-size:29px}.date{font-size:62px;line-height:1.6}.time{font-size:29px;color:#e6d29b}.venue{font-size:68px}.address{font-size:22px;line-height:2.5;max-width:750px;color:#ead7a4}.map{margin-top:25px;padding:10px 32px;border:1px solid #d7b45c;border-radius:40px;background:#4a0b1b;color:#efd17a;text-decoration:none;font-size:19px}.countdown{display:flex;gap:15px;justify-content:center;flex-wrap:wrap}.count{width:135px;padding:18px 10px;border:1px solid #cda94f;background:#360511b8}.num{display:block;font:42px Georgia,serif}.label{font-size:18px;color:#d9c18a}.gallery{width:min(1000px,95%);display:grid;grid-template-columns:repeat(2,1fr);gap:25px}.gallery img{width:100%;height:430px;object-fit:cover;padding:6px;background:#ead6a5;border:1px solid #d4ae54;opacity:.2;transform:translateY(60px);transition:1s}.gallery img.show{opacity:1;transform:none}.final{min-height:80vh}.final-names{font-size:70px}
-@media(max-width:700px){.gallery{grid-template-columns:1fr}.gallery img{height:420px}.names{font-size:78px}.open-names{font-size:52px}.title{font-size:45px}.date{font-size:47px}.venue{font-size:52px}.quran{font-size:18px}.inv{font-size:19px}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+body{
+  margin:0;
+  background:#300713;
+  color:#f1d48a;
+  font-family:"Noto Nastaliq Urdu",serif;
+  overflow-x:hidden
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  background:
+    linear-gradient(#350714d9,#350714ee),
+    url("https://images.unsplash.com/photo-1490750967868-88aa4486c946")
+    center/cover no-repeat
+}
+
+body:after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  background:radial-gradient(circle,transparent,#1d0209aa)
+}
+
+#opening{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:
+    linear-gradient(#350714d9,#350714f5),
+    url("https://images.unsplash.com/photo-1490750967868-88aa4486c946")
+    center/cover;
+  transition:opacity 1s,visibility 1s
+}
+
+#opening.hide{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none
+}
+
+.open-small{font-size:23px}
+
+.open-names{
+  font-size:62px;
+  line-height:1.8
+}
+
+.line{
+  width:230px;
+  height:1px;
+  background:#d8b45d;
+  margin:18px auto;
+  position:relative
+}
+
+.line:after{
+  content:"✦";
+  position:absolute;
+  left:50%;
+  top:-15px;
+  transform:translateX(-50%);
+  font-family:serif
+}
+
+.open-btn{
+  padding:13px 48px;
+  border-radius:50px;
+  border:1px solid #e2c36c;
+  background:#4a0b1b;
+  color:#f2d889;
+  font-family:inherit;
+  font-size:22px;
+  cursor:pointer
+}
+
+.note{
+  margin-top:14px;
+  font-size:14px;
+  color:#d9c28c
+}
+
+.music{
+  position:fixed;
+  left:20px;
+  bottom:20px;
+  z-index:5000;
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  border:1px solid #d8b45b;
+  background:#450919;
+  color:#f0ce70;
+  font-size:21px;
+  cursor:pointer
+}
+
+.page{
+  max-width:1200px;
+  margin:auto
+}
+
+.page:before{
+  content:"";
+  position:fixed;
+  inset:12px;
+  border:1px solid #d5af55;
+  z-index:3000;
+  pointer-events:none
+}
+
+section{
+  min-height:100vh;
+  padding:80px 25px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative
+}
+
+.bismillah{font-size:29px}
+
+.quran{
+  max-width:760px;
+  font-size:22px;
+  line-height:2.5;
+  color:#ead6a2
+}
+
+.quran small{
+  display:block;
+  color:#c8a95e
+}
+
+.names{
+  font-size:105px;
+  line-height:1.5;
+  color:#f2ce6b
+}
+
+.and{
+  font:42px Georgia,serif;
+  color:#d8b45d
+}
+
+.inv{
+  font-size:23px;
+  line-height:2.3;
+  color:#ead9ad
+}
+
+.title{
+  font-size:55px;
+  color:#edca6d;
+  margin:10px 0 25px
+}
+
+.datebox{
+  width:min(850px,95%);
+  padding:35px 20px;
+  border-top:1px solid #d5b25d;
+  border-bottom:1px solid #d5b25d
+}
+
+.day{font-size:29px}
+
+.date{
+  font-size:62px;
+  line-height:1.6
+}
+
+.time{
+  font-size:29px;
+  color:#e6d29b
+}
+
+.venue{font-size:68px}
+
+.address{
+  font-size:22px;
+  line-height:2.5;
+  max-width:750px;
+  color:#ead7a4
+}
+
+.map{
+  margin-top:25px;
+  padding:10px 32px;
+  border:1px solid #d7b45c;
+  border-radius:40px;
+  background:#4a0b1b;
+  color:#efd17a;
+  text-decoration:none;
+  font-size:19px
+}
+
+.countdown{
+  display:flex;
+  gap:15px;
+  justify-content:center;
+  flex-wrap:wrap
+}
+
+.count{
+  width:135px;
+  padding:18px 10px;
+  border:1px solid #cda94f;
+  background:#360511b8
+}
+
+.num{
+  display:block;
+  font:42px Georgia,serif
+}
+
+.label{
+  font-size:18px;
+  color:#d9c18a
+}
+
+.gallery{
+  width:min(1000px,95%);
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:25px
+}
+
+.gallery img{
+  width:100%;
+  height:430px;
+  object-fit:cover;
+  padding:6px;
+  background:#ead6a5;
+  border:1px solid #d4ae54;
+  opacity:.2;
+  transform:translateY(60px);
+  transition:1s
+}
+
+.gallery img.show{
+  opacity:1;
+  transform:none
+}
+
+.final{min-height:80vh}
+
+.final-names{font-size:70px}
+
+@media(max-width:700px){
+
+  .gallery{
+    grid-template-columns:1fr
+  }
+
+  .gallery img{
+    height:420px
+  }
+
+  .names{
+    font-size:78px
+  }
+
+  .open-names{
+    font-size:52px
+  }
+
+  .title{
+    font-size:45px
+  }
+
+  .date{
+    font-size:47px
+  }
+
+  .venue{
+    font-size:52px
+  }
+
+  .quran{
+    font-size:18px
+  }
+
+  .inv{
+    font-size:19px
+  }
+}
 </style>
 </head>
+
 <body>
 
 <div id="opening">
+
   <div>✦</div>
-  <div class="open-small">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</div>
+
+  <div class="open-small">
+    بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ
+  </div>
+
   <div class="line"></div>
-  <div class="open-names">محمد<br>وآية</div>
+
+  <div class="open-names">
+    محمد<br>
+    وآية
+  </div>
+
   <div class="line"></div>
-  <button class="open-btn" id="openBtn">اضغطي لفتح الدعوة 🎵</button>
-  <div class="note">تبدأ الموسيقى مباشرة عند فتح الدعوة</div>
+
+  <button class="open-btn" id="openBtn">
+    اضغطي لفتح الدعوة 🎵
+  </button>
+
+  <div class="note">
+    تبدأ الموسيقى مباشرة عند فتح الدعوة
+  </div>
+
 </div>
 
-<audio id="music" src="music/music.mp3" preload="auto" loop></audio>
-<button class="music" id="musicBtn" aria-label="إيقاف أو تشغيل الموسيقى">♫</button>
+<!-- تم تعديل مسار الأغنية هنا -->
+<audio id="music" src="music.mp3" preload="auto" loop></audio>
+
+<button class="music" id="musicBtn" aria-label="إيقاف أو تشغيل الموسيقى">
+  ♫
+</button>
 
 <div class="page">
+
 <section>
+
   <div>❈</div>
-  <div class="bismillah">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</div>
-  <div class="quran">وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنْفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً<small>صدق الله العظيم</small></div>
-  <div class="line"></div><div class="names">محمد<div class="and">&amp;</div>آية</div><div class="line"></div>
-  <p class="inv">بكل الحب والامتنان<br>ندعوكم لمشاركتنا أجمل أيام حياتنا<br>في حفل زفافنا</p>
+
+  <div class="bismillah">
+    بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ
+  </div>
+
+  <div class="quran">
+    وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنْفُسِكُمْ أَزْوَاجًا
+    لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
+    <small>صدق الله العظيم</small>
+  </div>
+
+  <div class="line"></div>
+
+  <div class="names">
+    محمد
+    <div class="and">&amp;</div>
+    آية
+  </div>
+
+  <div class="line"></div>
+
+  <p class="inv">
+    بكل الحب والامتنان<br>
+    ندعوكم لمشاركتنا أجمل أيام حياتنا<br>
+    في حفل زفافنا
+  </p>
+
 </section>
 
-<section>
-  <div>❈</div><h2 class="title">موعد الفرح</h2>
-  <div class="datebox"><div class="day">يوم الخميس</div><div class="date">٣ سبتمبر ٢٠٢٦</div><div class="time">الساعة التاسعة مساءً</div></div>
-</section>
 
 <section>
-  <div>❈</div><h2 class="title">مكان الاحتفال</h2>
-  <div class="venue">سما عمان</div>
-  <div class="address">ماركا الجنوبية – طريق الحزام<br>بالقرب من جسر الصالحية العابد<br>مقابل محطة جوبترول للمحروقات</div>
-  <a class="map" href="https://www.google.com/maps/search/?api=1&query=سما+عمان+ماركا+الجنوبية" target="_blank">📍 عرض الموقع على الخريطة</a>
+
+  <div>❈</div>
+
+  <h2 class="title">
+    موعد الفرح
+  </h2>
+
+  <div class="datebox">
+
+    <div class="day">
+      يوم الخميس
+    </div>
+
+    <div class="date">
+      ٣ سبتمبر ٢٠٢٦
+    </div>
+
+    <div class="time">
+      الساعة التاسعة مساءً
+    </div>
+
+  </div>
+
 </section>
 
+
 <section>
-  <div>✦</div><h2 class="title">بقي على موعدنا</h2>
+
+  <div>❈</div>
+
+  <h2 class="title">
+    مكان الاحتفال
+  </h2>
+
+  <div class="venue">
+    سما عمان
+  </div>
+
+  <div class="address">
+    ماركا الجنوبية – طريق الحزام<br>
+    بالقرب من جسر الصالحية العابد<br>
+    مقابل محطة جوبترول للمحروقات
+  </div>
+
+  <a
+    class="map"
+    href="https://www.google.com/maps/search/?api=1&query=سما+عمان+ماركا+الجنوبية"
+    target="_blank"
+  >
+    📍 عرض الموقع على الخريطة
+  </a>
+
+</section>
+
+
+<section>
+
+  <div>✦</div>
+
+  <h2 class="title">
+    بقي على موعدنا
+  </h2>
+
   <div class="countdown">
-    <div class="count"><span id="days" class="num">٠</span><span class="label">يوم</span></div>
-    <div class="count"><span id="hours" class="num">٠</span><span class="label">ساعة</span></div>
-    <div class="count"><span id="minutes" class="num">٠</span><span class="label">دقيقة</span></div>
-    <div class="count"><span id="seconds" class="num">٠</span><span class="label">ثانية</span></div>
+
+    <div class="count">
+      <span id="days" class="num">٠</span>
+      <span class="label">يوم</span>
+    </div>
+
+    <div class="count">
+      <span id="hours" class="num">٠</span>
+      <span class="label">ساعة</span>
+    </div>
+
+    <div class="count">
+      <span id="minutes" class="num">٠</span>
+      <span class="label">دقيقة</span>
+    </div>
+
+    <div class="count">
+      <span id="seconds" class="num">٠</span>
+      <span class="label">ثانية</span>
+    </div>
+
   </div>
+
 </section>
 
+
 <section>
-  <div>❈</div><h2 class="title">من أجمل لحظاتنا</h2>
+
+  <div>❈</div>
+
+  <h2 class="title">
+    من أجمل لحظاتنا
+  </h2>
+
   <div class="gallery">
-    <img src="https://images.unsplash.com/photo-1519741497674-611481863552" alt="زفاف">
-    <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed" alt="زفاف">
-    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc" alt="زفاف">
-    <img src="https://images.unsplash.com/photo-1460364157752-92648c34a20a" alt="زفاف">
+
+    <img
+      src="https://images.unsplash.com/photo-1519741497674-611481863552"
+      alt="زفاف"
+    >
+
+    <img
+      src="https://images.unsplash.com/photo-1519225421980-715cb0215aed"
+      alt="زفاف"
+    >
+
+    <img
+      src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc"
+      alt="زفاف"
+    >
+
+    <img
+      src="https://images.unsplash.com/photo-1460364157752-92648c34a20a"
+      alt="زفاف"
+    >
+
   </div>
+
 </section>
+
 
 <section class="final">
-  <div class="line"></div><h2 class="title">حضوركم يسعدنا</h2>
-  <p class="inv">ننتظركم بكل الحب<br>لنشارككم فرحتنا<br>ونحتفل معًا ببداية حكايتنا</p>
-  <div class="line"></div><div class="final-names">محمد &amp; آية</div><div>♡</div>
+
+  <div class="line"></div>
+
+  <h2 class="title">
+    حضوركم يسعدنا
+  </h2>
+
+  <p class="inv">
+    ننتظركم بكل الحب<br>
+    لنشارككم فرحتنا<br>
+    ونحتفل معًا ببداية حكايتنا
+  </p>
+
+  <div class="line"></div>
+
+  <div class="final-names">
+    محمد &amp; آية
+  </div>
+
+  <div>♡</div>
+
 </section>
+
 </div>
 
+
 <script>
-const music=document.getElementById("music");
-const opening=document.getElementById("opening");
-const openBtn=document.getElementById("openBtn");
-const musicBtn=document.getElementById("musicBtn");
+
+const music = document.getElementById("music");
+const opening = document.getElementById("opening");
+const openBtn = document.getElementById("openBtn");
+const musicBtn = document.getElementById("musicBtn");
+
 
 openBtn.addEventListener("click", async function(){
-  /* هذه الضغطة هي سماح المتصفح بتشغيل الصوت */
+
+  /* ضغطة المستخدم تسمح للمتصفح بتشغيل الصوت */
+
   try{
+
     await music.play();
-    musicBtn.textContent="❚❚";
+
+    musicBtn.textContent = "❚❚";
+
   }catch(e){
-    musicBtn.textContent="▶";
+
+    musicBtn.textContent = "▶";
+
   }
+
   opening.classList.add("hide");
+
   setTimeout(autoScroll,700);
+
 });
+
 
 musicBtn.addEventListener("click",async function(){
+
   if(music.paused){
-    try{await music.play();musicBtn.textContent="❚❚"}catch(e){}
+
+    try{
+
+      await music.play();
+
+      musicBtn.textContent = "❚❚";
+
+    }catch(e){}
+
   }else{
-    music.pause();musicBtn.textContent="♫";
+
+    music.pause();
+
+    musicBtn.textContent = "♫";
+
   }
+
 });
 
-music.addEventListener("ended",()=>{music.currentTime=0;music.play().catch(()=>{})});
+
+music.addEventListener("ended",()=>{
+
+  music.currentTime = 0;
+
+  music.play().catch(()=>{});
+
+});
+
 
 function autoScroll(){
-  const duration=35000,start=scrollY,end=document.documentElement.scrollHeight-innerHeight,distance=end-start;
-  let t0=null;
+
+  const duration = 35000;
+  const start = scrollY;
+  const end = document.documentElement.scrollHeight - innerHeight;
+  const distance = end - start;
+
+  let t0 = null;
+
   function frame(t){
-    if(!t0)t0=t;
-    let p=Math.min((t-t0)/duration,1);
-    let e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;
+
+    if(!t0)t0 = t;
+
+    let p = Math.min((t-t0)/duration,1);
+
+    let e = p<.5
+      ? 2*p*p
+      : 1-Math.pow(-2*p+2,2)/2;
+
     scrollTo(0,start+distance*e);
-    if(p<1)requestAnimationFrame(frame);
+
+    if(p<1)
+      requestAnimationFrame(frame);
+
   }
+
   requestAnimationFrame(frame);
+
 }
 
-const wedding=new Date("2026-09-03T21:00:00").getTime();
-function ar(n){return String(n).replace(/\d/g,d=>"٠١٢٣٤٥٦٧٨٩"[d])}
+
+const wedding =
+  new Date("2026-09-03T21:00:00").getTime();
+
+
+function ar(n){
+
+  return String(n).replace(
+    /\d/g,
+    d=>"٠١٢٣٤٥٦٧٨٩"[d]
+  );
+
+}
+
+
 function countdown(){
-  let d=Math.max(0,wedding-Date.now());
-  document.getElementById("days").textContent=ar(Math.floor(d/86400000));
-  document.getElementById("hours").textContent=ar(Math.floor(d%86400000/3600000));
-  document.getElementById("minutes").textContent=ar(Math.floor(d%3600000/60000));
-  document.getElementById("seconds").textContent=ar(Math.floor(d%60000/1000));
-}
-countdown();setInterval(countdown,1000);
 
-const observer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("show")}),{threshold:.15});
-document.querySelectorAll(".gallery img").forEach(i=>observer.observe(i));
+  let d = Math.max(
+    0,
+    wedding-Date.now()
+  );
+
+  document.getElementById("days").textContent =
+    ar(Math.floor(d/86400000));
+
+  document.getElementById("hours").textContent =
+    ar(Math.floor(d%86400000/3600000));
+
+  document.getElementById("minutes").textContent =
+    ar(Math.floor(d%3600000/60000));
+
+  document.getElementById("seconds").textContent =
+    ar(Math.floor(d%60000/1000));
+
+}
+
+
+countdown();
+
+setInterval(countdown,1000);
+
+
+const observer =
+  new IntersectionObserver(
+    es=>es.forEach(e=>{
+      if(e.isIntersecting)
+        e.target.classList.add("show")
+    }),
+    {threshold:.15}
+  );
+
+
+document
+  .querySelectorAll(".gallery img")
+  .forEach(i=>observer.observe(i));
+
 </script>
+
 </body>
 </html>
