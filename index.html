@@ -1,384 +1,1305 @@
 ```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>محمد و آية | دعوة زفاف</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;500;600&display=swap" rel="stylesheet">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>محمد & آية | دعوة زفاف</title>
+
+<link rel="preconnect"
+      href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@400;500;600&display=swap"
+      rel="stylesheet">
+
 
 <style>
 
+/* =====================================================
+   BASIC
+===================================================== */
+
 *{
-  box-sizing:border-box
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 html{
-  scroll-behavior:smooth
+  scroll-behavior:smooth;
 }
 
 body{
-  margin:0;
-  background:#300713;
-  color:#f1d48a;
-  font-family:"Noto Nastaliq Urdu",serif;
-  overflow-x:hidden
+
+  background:#21030b;
+
+  color:#efd28a;
+
+  font-family:"Amiri",serif;
+
+  overflow-x:hidden;
+
 }
 
-body:before{
+
+/* =====================================================
+   LUXURY BACKGROUND
+===================================================== */
+
+body::before{
+
   content:"";
+
   position:fixed;
+
   inset:0;
-  z-index:-2;
+
+  z-index:-3;
+
   background:
-    linear-gradient(#350714d9,#350714ee),
+
+    linear-gradient(
+      rgba(39,3,13,.92),
+      rgba(22,1,8,.97)
+    ),
+
     url("https://images.unsplash.com/photo-1490750967868-88aa4486c946")
-    center/cover no-repeat
+
+    center/cover no-repeat;
+
+  transform:scale(1.05);
+
+  animation:
+    backgroundMove 18s ease-in-out infinite alternate;
+
 }
 
-body:after{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  background:radial-gradient(circle,transparent,#1d0209aa)
+
+@keyframes backgroundMove{
+
+  from{
+    transform:scale(1.05);
+  }
+
+  to{
+    transform:scale(1.12);
+  }
+
 }
+
+
+body::after{
+
+  content:"";
+
+  position:fixed;
+
+  inset:0;
+
+  z-index:-2;
+
+  background:
+
+    radial-gradient(
+      circle at 50% 30%,
+      rgba(218,170,67,.12),
+      transparent 35%
+    ),
+
+    radial-gradient(
+      circle at 20% 80%,
+      rgba(150,30,60,.12),
+      transparent 30%
+    );
+
+  pointer-events:none;
+
+}
+
+
+/* =====================================================
+   GOLD DUST
+===================================================== */
+
+.gold-dust{
+
+  position:fixed;
+
+  inset:0;
+
+  pointer-events:none;
+
+  z-index:1;
+
+  overflow:hidden;
+
+}
+
+
+.gold-dust span{
+
+  position:absolute;
+
+  width:3px;
+
+  height:3px;
+
+  background:#e7c66d;
+
+  border-radius:50%;
+
+  opacity:.5;
+
+  animation:
+    floatDust linear infinite;
+
+}
+
+
+.gold-dust span:nth-child(1){
+  left:10%;
+  animation-duration:11s;
+  animation-delay:1s;
+}
+
+.gold-dust span:nth-child(2){
+  left:25%;
+  animation-duration:14s;
+  animation-delay:3s;
+}
+
+.gold-dust span:nth-child(3){
+  left:42%;
+  animation-duration:10s;
+  animation-delay:2s;
+}
+
+.gold-dust span:nth-child(4){
+  left:61%;
+  animation-duration:15s;
+  animation-delay:4s;
+}
+
+.gold-dust span:nth-child(5){
+  left:78%;
+  animation-duration:12s;
+  animation-delay:1s;
+}
+
+.gold-dust span:nth-child(6){
+  left:91%;
+  animation-duration:16s;
+  animation-delay:5s;
+}
+
+
+@keyframes floatDust{
+
+  0%{
+    bottom:-10%;
+    transform:translateX(0);
+    opacity:0;
+  }
+
+  20%{
+    opacity:.6;
+  }
+
+  80%{
+    opacity:.4;
+  }
+
+  100%{
+    bottom:110%;
+    transform:translateX(40px);
+    opacity:0;
+  }
+
+}
+
+
+/* =====================================================
+   OPENING
+===================================================== */
 
 #opening{
+
   position:fixed;
+
   inset:0;
+
   z-index:9999;
+
   display:flex;
+
   flex-direction:column;
+
   align-items:center;
+
   justify-content:center;
+
   text-align:center;
+
   background:
-    linear-gradient(#350714d9,#350714f5),
-    url("https://images.unsplash.com/photo-1490750967868-88aa4486c946")
-    center/cover;
-  transition:opacity 1s,visibility 1s
+
+    radial-gradient(
+      circle at center,
+      rgba(112,20,44,.35),
+      transparent 45%
+    ),
+
+    linear-gradient(
+      rgba(30,2,10,.94),
+      rgba(18,1,7,.98)
+    );
+
+  transition:
+    opacity 1.4s ease,
+    visibility 1.4s ease;
+
 }
+
 
 #opening.hide{
+
   opacity:0;
+
   visibility:hidden;
-  pointer-events:none
+
+  pointer-events:none;
+
 }
+
+
+.open-ornament{
+
+  font-size:25px;
+
+  color:#e6c36b;
+
+  margin-bottom:20px;
+
+  animation:
+    ornamentGlow 3s ease-in-out infinite;
+
+}
+
+
+@keyframes ornamentGlow{
+
+  0%,100%{
+    opacity:.6;
+  }
+
+  50%{
+    opacity:1;
+  }
+
+}
+
 
 .open-small{
-  font-size:23px
+
+  font-size:21px;
+
+  color:#e3cc91;
+
+  margin-bottom:12px;
+
 }
+
 
 .open-names{
-  font-size:62px;
-  line-height:1.8
+
+  font-size:72px;
+
+  line-height:1.45;
+
+  color:#f1d17a;
+
+  text-shadow:
+    0 0 15px rgba(220,175,70,.18);
+
 }
 
-.line{
-  width:230px;
+
+.open-and{
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size:42px;
+
+  color:#cba34f;
+
+  margin:2px 0;
+
+}
+
+
+.open-line{
+
+  width:260px;
+
   height:1px;
-  background:#d8b45d;
-  margin:18px auto;
-  position:relative
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #d8b45d,
+      transparent
+    );
+
+  margin:25px auto;
+
+  position:relative;
+
 }
 
-.line:after{
+
+.open-line::after{
+
   content:"✦";
+
   position:absolute;
+
   left:50%;
-  top:-15px;
+
+  top:-12px;
+
   transform:translateX(-50%);
-  font-family:serif
+
+  background:#22030b;
+
+  padding:0 12px;
+
+  color:#e5c16a;
+
 }
+
 
 .open-btn{
-  padding:13px 48px;
+
+  margin-top:18px;
+
+  padding:14px 55px;
+
   border-radius:50px;
-  border:1px solid #e2c36c;
-  background:#4a0b1b;
-  color:#f2d889;
+
+  border:1px solid #d8b45d;
+
+  background:
+
+    linear-gradient(
+      135deg,
+      #5a0d22,
+      #350714
+    );
+
+  color:#f2d88a;
+
   font-family:inherit;
-  font-size:22px;
-  cursor:pointer
+
+  font-size:20px;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 8px 30px rgba(0,0,0,.35),
+    inset 0 0 15px rgba(224,185,87,.05);
+
+  transition:.4s;
+
 }
 
-.note{
-  margin-top:14px;
-  font-size:14px;
-  color:#d9c28c
+
+.open-btn:hover{
+
+  transform:translateY(-3px);
+
+  box-shadow:
+    0 12px 35px rgba(0,0,0,.5),
+    0 0 20px rgba(215,175,80,.12);
+
 }
 
-.music{
-  position:fixed;
-  left:20px;
-  bottom:20px;
-  z-index:5000;
-  width:56px;
-  height:56px;
-  border-radius:50%;
-  border:1px solid #d8b45b;
-  background:#450919;
-  color:#f0ce70;
-  font-size:21px;
-  cursor:pointer
-}
+
+/* =====================================================
+   PAGE
+===================================================== */
 
 .page{
+
   max-width:1200px;
-  margin:auto
+
+  margin:auto;
+
+  position:relative;
+
 }
 
-.page:before{
+
+/* Luxury frame */
+
+.page::before{
+
   content:"";
+
   position:fixed;
-  inset:12px;
-  border:1px solid #d5af55;
+
+  inset:14px;
+
+  border:1px solid rgba(213,175,85,.65);
+
   z-index:3000;
-  pointer-events:none
+
+  pointer-events:none;
+
 }
+
+
+.page::after{
+
+  content:"";
+
+  position:fixed;
+
+  inset:20px;
+
+  border:1px solid rgba(213,175,85,.12);
+
+  z-index:3000;
+
+  pointer-events:none;
+
+}
+
+
+/* =====================================================
+   MUSIC
+===================================================== */
+
+.music{
+
+  position:fixed;
+
+  left:22px;
+
+  bottom:22px;
+
+  z-index:5000;
+
+  width:55px;
+
+  height:55px;
+
+  border-radius:50%;
+
+  border:1px solid #d8b45d;
+
+  background:
+    linear-gradient(
+      145deg,
+      #5a0c21,
+      #300510
+    );
+
+  color:#efd17b;
+
+  font-size:20px;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 5px 25px rgba(0,0,0,.4);
+
+  transition:.3s;
+
+}
+
+
+.music:hover{
+
+  transform:scale(1.08);
+
+}
+
+
+/* =====================================================
+   SECTIONS
+===================================================== */
 
 section{
+
   min-height:100vh;
-  padding:80px 25px;
+
+  padding:
+    90px 25px;
+
   display:flex;
+
   flex-direction:column;
+
   align-items:center;
+
   justify-content:center;
+
   text-align:center;
-  position:relative
+
+  position:relative;
+
 }
+
+
+section::before{
+
+  content:"✦";
+
+  position:absolute;
+
+  top:35px;
+
+  color:#b58a3a;
+
+  font-size:13px;
+
+  opacity:.7;
+
+}
+
+
+/* =====================================================
+   DECORATION
+===================================================== */
+
+.ornament{
+
+  color:#d9b45c;
+
+  font-size:22px;
+
+  margin-bottom:15px;
+
+}
+
+
+.line{
+
+  width:230px;
+
+  height:1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #d8b45d,
+      transparent
+    );
+
+  margin:22px auto;
+
+  position:relative;
+
+}
+
+
+.line::after{
+
+  content:"✦";
+
+  position:absolute;
+
+  left:50%;
+
+  top:-12px;
+
+  transform:translateX(-50%);
+
+  background:#25040d;
+
+  padding:0 12px;
+
+  color:#d8b45d;
+
+}
+
+
+/* =====================================================
+   FIRST SECTION
+===================================================== */
 
 .bismillah{
-  font-size:29px
+
+  font-size:30px;
+
+  color:#e8d3a0;
+
+  margin-bottom:25px;
+
 }
+
 
 .quran{
-  max-width:760px;
-  font-size:22px;
-  line-height:2.5;
-  color:#ead6a2
+
+  max-width:780px;
+
+  font-size:21px;
+
+  line-height:2.6;
+
+  color:#ead7a7;
+
 }
+
 
 .quran small{
+
   display:block;
-  color:#c8a95e
+
+  margin-top:10px;
+
+  color:#bfa15e;
+
+  font-size:15px;
+
 }
+
 
 .names{
-  font-size:105px;
-  line-height:1.5;
-  color:#f2ce6b
+
+  font-size:110px;
+
+  line-height:1.25;
+
+  color:#f0cd6c;
+
+  text-shadow:
+    0 0 25px rgba(225,180,72,.13);
+
 }
+
 
 .and{
-  font:42px Georgia,serif;
-  color:#d8b45d
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size:46px;
+
+  color:#cda653;
+
+  margin:0 0 4px;
+
 }
+
 
 .inv{
-  font-size:23px;
-  line-height:2.3;
-  color:#ead9ad
+
+  font-size:22px;
+
+  line-height:2.4;
+
+  color:#e8d8af;
+
 }
+
+
+/* =====================================================
+   TITLES
+===================================================== */
 
 .title{
-  font-size:55px;
+
+  font-size:56px;
+
+  font-weight:400;
+
   color:#edca6d;
-  margin:10px 0 25px
+
+  margin:5px 0 28px;
+
+  text-shadow:
+    0 0 20px rgba(222,175,66,.1);
+
 }
+
+
+.title-decoration{
+
+  color:#a9823b;
+
+  font-size:15px;
+
+  margin-bottom:8px;
+
+}
+
+
+/* =====================================================
+   DATE
+===================================================== */
 
 .datebox{
+
   width:min(850px,95%);
-  padding:35px 20px;
-  border-top:1px solid #d5b25d;
-  border-bottom:1px solid #d5b25d
+
+  padding:45px 25px;
+
+  border-top:1px solid #c9a552;
+
+  border-bottom:1px solid #c9a552;
+
+  position:relative;
+
 }
+
+
+.datebox::before,
+.datebox::after{
+
+  content:"✦";
+
+  position:absolute;
+
+  color:#d4ae57;
+
+  font-size:13px;
+
+}
+
+
+.datebox::before{
+
+  top:-10px;
+
+  left:50%;
+
+  transform:translateX(-50%);
+
+  background:#25040d;
+
+  padding:0 12px;
+
+}
+
+
+.datebox::after{
+
+  bottom:-10px;
+
+  left:50%;
+
+  transform:translateX(-50%);
+
+  background:#25040d;
+
+  padding:0 12px;
+
+}
+
 
 .day{
-  font-size:29px
+
+  font-size:28px;
+
+  color:#d9bd7a;
+
 }
+
 
 .date{
-  font-size:62px;
-  line-height:1.6
+
+  font-size:63px;
+
+  line-height:1.5;
+
+  color:#f0d27e;
+
+  margin:5px 0;
+
 }
+
 
 .time{
-  font-size:29px;
-  color:#e6d29b
+
+  font-size:27px;
+
+  color:#dfcca0;
+
 }
+
+
+/* =====================================================
+   VENUE
+===================================================== */
 
 .venue{
-  font-size:68px
+
+  font-size:70px;
+
+  color:#f0cf72;
+
+  margin-bottom:15px;
+
 }
+
 
 .address{
-  font-size:22px;
+
+  font-size:21px;
+
   line-height:2.5;
+
   max-width:750px;
-  color:#ead7a4
+
+  color:#e6d5ab;
+
 }
+
 
 .map{
-  margin-top:25px;
-  padding:10px 32px;
-  border:1px solid #d7b45c;
-  border-radius:40px;
-  background:#4a0b1b;
+
+  margin-top:30px;
+
+  padding:12px 35px;
+
+  border:1px solid #d5b05a;
+
+  border-radius:50px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #5a0c20,
+      #350613
+    );
+
   color:#efd17a;
+
   text-decoration:none;
-  font-size:19px
+
+  font-size:18px;
+
+  transition:.4s;
+
+  box-shadow:
+    0 7px 25px rgba(0,0,0,.3);
+
 }
+
+
+.map:hover{
+
+  transform:translateY(-3px);
+
+}
+
+
+/* =====================================================
+   COUNTDOWN
+===================================================== */
 
 .countdown{
+
   display:flex;
-  gap:15px;
+
+  gap:16px;
+
   justify-content:center;
-  flex-wrap:wrap
+
+  flex-wrap:wrap;
+
 }
+
 
 .count{
+
   width:135px;
-  padding:18px 10px;
-  border:1px solid #cda94f;
-  background:#360511b8
+
+  padding:20px 10px;
+
+  border:
+
+    1px solid
+    rgba(205,169,79,.7);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(75,9,28,.8),
+      rgba(35,3,12,.9)
+    );
+
+  box-shadow:
+    inset 0 0 20px rgba(214,171,67,.03),
+    0 8px 25px rgba(0,0,0,.2);
+
 }
+
 
 .num{
+
   display:block;
-  font:42px Georgia,serif
+
+  font-family:
+    "Cormorant Garamond",
+    serif;
+
+  font-size:45px;
+
+  color:#f0d078;
+
 }
+
 
 .label{
-  font-size:18px;
-  color:#d9c18a
+
+  font-size:17px;
+
+  color:#d3bd8a;
+
 }
+
+
+/* =====================================================
+   FINAL
+===================================================== */
 
 .final{
-  min-height:80vh
+
+  min-height:85vh;
+
 }
 
-.final-names{
-  font-size:70px
+
+.final .title{
+
+  font-size:58px;
+
 }
+
+
+.final-names{
+
+  font-size:72px;
+
+  color:#f0cf73;
+
+  margin-top:12px;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media(max-width:700px){
 
-  .names{
-    font-size:78px
+  .page::before{
+    inset:10px;
+  }
+
+  .page::after{
+    inset:15px;
+  }
+
+  section{
+    padding:
+      75px 20px;
   }
 
   .open-names{
-    font-size:52px
+    font-size:54px;
   }
 
-  .title{
-    font-size:45px
+  .open-small{
+    font-size:18px;
   }
 
-  .date{
-    font-size:47px
+  .open-btn{
+    font-size:18px;
+    padding:
+      12px 40px;
   }
 
-  .venue{
-    font-size:52px
+  .bismillah{
+    font-size:24px;
   }
 
   .quran{
-    font-size:18px
+    font-size:17px;
+    line-height:2.4;
+  }
+
+  .names{
+    font-size:76px;
+  }
+
+  .and{
+    font-size:38px;
   }
 
   .inv{
-    font-size:19px
+    font-size:18px;
+  }
+
+  .title{
+    font-size:44px;
+  }
+
+  .datebox{
+    padding:35px 15px;
+  }
+
+  .day{
+    font-size:24px;
+  }
+
+  .date{
+    font-size:45px;
+  }
+
+  .time{
+    font-size:23px;
+  }
+
+  .venue{
+    font-size:51px;
+  }
+
+  .address{
+    font-size:18px;
+  }
+
+  .count{
+    width:125px;
+  }
+
+  .num{
+    font-size:39px;
+  }
+
+  .final .title{
+    font-size:45px;
+  }
+
+  .final-names{
+    font-size:52px;
+  }
+
+}
+
+
+/* =====================================================
+   REDUCE MOTION
+===================================================== */
+
+@media(prefers-reduced-motion:reduce){
+
+  *,
+  *::before,
+  *::after{
+
+    animation-duration:.01ms !important;
+
+    animation-iteration-count:1 !important;
+
+    scroll-behavior:auto !important;
+
   }
 
 }
 
 </style>
+
 </head>
+
 
 <body>
 
-<div id="opening">
 
-  <div>✦</div>
+<!-- GOLD DUST -->
 
-  <div class="open-small">
-    بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ
-  </div>
+<div class="gold-dust">
 
-  <div class="line"></div>
-
-  <div class="open-names">
-    محمد<br>
-    وآية
-  </div>
-
-  <div class="line"></div>
-
-  <button class="open-btn" id="openBtn">
-    اضغط لفتح الدعوة 🎵
-  </button>
-
-  <div class="note"></div>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
 
 </div>
 
 
-<audio id="music" src="music.mp3" preload="auto" loop></audio>
+<!-- =====================================================
+     OPENING
+===================================================== -->
 
-<button class="music" id="musicBtn" aria-label="إيقاف أو تشغيل الموسيقى">
+<div id="opening">
+
+  <div class="open-ornament">
+    ✦
+  </div>
+
+
+  <div class="open-small">
+
+    بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ
+
+  </div>
+
+
+  <div class="open-line"></div>
+
+
+  <div class="open-names">
+
+    محمد
+
+    <div class="open-and">
+      &amp;
+    </div>
+
+    آية
+
+  </div>
+
+
+  <div class="open-line"></div>
+
+
+  <button
+    class="open-btn"
+    id="openBtn">
+
+    افتحوا دعوتنا ✦
+
+  </button>
+
+
+</div>
+
+
+<!-- MUSIC -->
+
+<audio
+  id="music"
+  src="music.mp3"
+  preload="auto"
+  loop>
+</audio>
+
+
+<button
+  class="music"
+  id="musicBtn"
+  aria-label="الموسيقى">
+
   ♫
+
 </button>
 
+
+<!-- =====================================================
+     PAGE
+===================================================== -->
 
 <div class="page">
 
 
+<!-- =====================================================
+     INTRO
+===================================================== -->
+
 <section>
 
-  <div>❈</div>
+  <div class="ornament">
+    ❈
+  </div>
+
 
   <div class="bismillah">
+
     بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ
+
   </div>
+
 
   <div class="quran">
+
     وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنْفُسِكُمْ أَزْوَاجًا
     لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
-    <small>صدق الله العظيم</small>
+
+    <small>
+      صدق الله العظيم
+    </small>
+
   </div>
 
+
   <div class="line"></div>
+
 
   <div class="names">
+
     محمد
-    <div class="and">&amp;</div>
+
+    <div class="and">
+      &amp;
+    </div>
+
     آية
+
   </div>
+
 
   <div class="line"></div>
 
+
   <p class="inv">
+
     بكل الحب والامتنان<br>
+
     ندعوكم لمشاركتنا أجمل أيام حياتنا<br>
+
     في حفل زفافنا
+
   </p>
+
 
 </section>
 
 
+<!-- =====================================================
+     DATE
+===================================================== -->
+
 <section>
 
-  <div>❈</div>
+  <div class="title-decoration">
+    ✦  موعدنا  ✦
+  </div>
+
 
   <h2 class="title">
     موعد الفرح
   </h2>
+
 
   <div class="datebox">
 
@@ -386,9 +1307,11 @@ section{
       يوم الخميس
     </div>
 
+
     <div class="date">
       ٣ سبتمبر ٢٠٢٦
     </div>
+
 
     <div class="time">
       الساعة التاسعة مساءً
@@ -396,94 +1319,199 @@ section{
 
   </div>
 
+
 </section>
 
 
+<!-- =====================================================
+     VENUE
+===================================================== -->
+
 <section>
 
-  <div>❈</div>
+  <div class="title-decoration">
+    ✦  المكان  ✦
+  </div>
+
 
   <h2 class="title">
     مكان الاحتفال
   </h2>
 
+
   <div class="venue">
     سما عمان
   </div>
 
+
   <div class="address">
+
     ماركا الجنوبية – طريق الحزام<br>
+
     بالقرب من جسر الصالحية العابد<br>
+
     مقابل محطة جوبترول للمحروقات
+
   </div>
+
 
   <a
     class="map"
     href="https://www.google.com/maps/search/?api=1&query=سما+عمان+ماركا+الجنوبية"
-    target="_blank"
-  >
+    target="_blank">
+
     📍 عرض الموقع على الخريطة
+
   </a>
+
 
 </section>
 
 
+<!-- =====================================================
+     COUNTDOWN
+===================================================== -->
+
 <section>
 
-  <div>✦</div>
+  <div class="title-decoration">
+    ✦  العد التنازلي  ✦
+  </div>
+
 
   <h2 class="title">
     بقي على موعدنا
   </h2>
 
+
   <div class="countdown">
 
-    <div class="count">
-      <span id="days" class="num">٠</span>
-      <span class="label">يوم</span>
-    </div>
 
     <div class="count">
-      <span id="hours" class="num">٠</span>
-      <span class="label">ساعة</span>
+
+      <span
+        id="days"
+        class="num">
+
+        ٠
+
+      </span>
+
+      <span class="label">
+        يوم
+      </span>
+
     </div>
 
-    <div class="count">
-      <span id="minutes" class="num">٠</span>
-      <span class="label">دقيقة</span>
-    </div>
 
     <div class="count">
-      <span id="seconds" class="num">٠</span>
-      <span class="label">ثانية</span>
+
+      <span
+        id="hours"
+        class="num">
+
+        ٠
+
+      </span>
+
+      <span class="label">
+        ساعة
+      </span>
+
     </div>
+
+
+    <div class="count">
+
+      <span
+        id="minutes"
+        class="num">
+
+        ٠
+
+      </span>
+
+      <span class="label">
+        دقيقة
+      </span>
+
+    </div>
+
+
+    <div class="count">
+
+      <span
+        id="seconds"
+        class="num">
+
+        ٠
+
+      </span>
+
+      <span class="label">
+        ثانية
+      </span>
+
+    </div>
+
 
   </div>
 
+
 </section>
 
+
+<!-- =====================================================
+     FINAL
+===================================================== -->
 
 <section class="final">
 
   <div class="line"></div>
 
+
+  <div class="title-decoration">
+    ✦  بكل الحب  ✦
+  </div>
+
+
   <h2 class="title">
     حضوركم يسعدنا
   </h2>
 
+
   <p class="inv">
+
     ننتظركم بكل الحب<br>
+
     لنشارككم فرحتنا<br>
+
     ونحتفل معًا ببداية حكايتنا
+
   </p>
+
 
   <div class="line"></div>
 
+
   <div class="final-names">
+
     محمد &amp; آية
+
   </div>
 
-  <div>♡</div>
+
+  <div
+    style="
+      margin-top:18px;
+      font-size:25px;
+      color:#d6b15b;
+    ">
+
+    ♡
+
+  </div>
+
 
 </section>
 
@@ -491,197 +1519,276 @@ section{
 </div>
 
 
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
 <script>
 
-const music = document.getElementById("music");
-const opening = document.getElementById("opening");
-const openBtn = document.getElementById("openBtn");
-const musicBtn = document.getElementById("musicBtn");
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const music =
+  document.getElementById("music");
+
+const opening =
+  document.getElementById("opening");
+
+const openBtn =
+  document.getElementById("openBtn");
+
+const musicBtn =
+  document.getElementById("musicBtn");
 
 
-// تشغيل الدعوة والموسيقى
-openBtn.addEventListener("click", async function(){
+/* =====================================================
+   OPEN INVITATION
+===================================================== */
 
-  try{
-
-    await music.play();
-
-    musicBtn.textContent = "❚❚";
-
-  }catch(e){
-
-    musicBtn.textContent = "▶";
-
-  }
-
-  opening.classList.add("hide");
-
-  setTimeout(autoScroll,700);
-
-});
-
-
-// زر الموسيقى
-musicBtn.addEventListener("click",async function(){
-
-  if(music.paused){
+openBtn.addEventListener(
+  "click",
+  async function(){
 
     try{
 
       await music.play();
 
-      musicBtn.textContent = "❚❚";
+      musicBtn.textContent="❚❚";
 
-    }catch(e){}
+    }
 
-  }else{
+    catch(e){
 
-    music.pause();
+      musicBtn.textContent="▶";
 
-    musicBtn.textContent = "♫";
+    }
+
+
+    opening.classList.add("hide");
+
+
+    setTimeout(
+      autoScroll,
+      1200
+    );
 
   }
-
-});
-
-
-// إعادة تشغيل الموسيقى عند انتهائها
-music.addEventListener("ended",()=>{
-
-  music.currentTime = 0;
-
-  music.play().catch(()=>{});
-
-});
+);
 
 
-// ================================
-// السكرول التلقائي
-// ================================
+/* =====================================================
+   MUSIC BUTTON
+===================================================== */
 
-let autoScrolling = false;
-let animationFrame = null;
+musicBtn.addEventListener(
+  "click",
+  async function(){
+
+    if(music.paused){
+
+      try{
+
+        await music.play();
+
+        musicBtn.textContent="❚❚";
+
+      }
+
+      catch(e){}
+
+    }
+
+    else{
+
+      music.pause();
+
+      musicBtn.textContent="♫";
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   MUSIC LOOP
+===================================================== */
+
+music.addEventListener(
+  "ended",
+  function(){
+
+    music.currentTime=0;
+
+    music.play().catch(()=>{});
+
+  }
+);
+
+
+/* =====================================================
+   AUTO SCROLL
+===================================================== */
+
+let autoScrolling=false;
+
+let animationFrame=null;
+
 
 function autoScroll(){
 
-  const duration = 45000;
+  const duration=45000;
 
-  const start = window.scrollY;
+  const start=
+    window.scrollY;
 
-  const end =
-    document.documentElement.scrollHeight - window.innerHeight;
 
-  const distance = end - start;
+  const end=
+    document.documentElement.scrollHeight
+    -
+    window.innerHeight;
 
-  let t0 = null;
 
-  autoScrolling = true;
+  const distance=
+    end-start;
+
+
+  if(distance<=0)
+    return;
+
+
+  let t0=null;
+
+
+  autoScrolling=true;
 
 
   function frame(t){
 
-    if(!autoScrolling) return;
+    if(!autoScrolling)
+      return;
+
 
     if(!t0)
-      t0 = t;
+      t0=t;
 
 
-    let p =
+    const p=
       Math.min(
-        (t - t0) / duration,
+        (t-t0)/duration,
         1
       );
 
 
-    let e =
-      p < 0.5
-        ? 2 * p * p
-        : 1 - Math.pow(-2 * p + 2, 2) / 2;
+    const e=
+      p<0.5
+
+      ?
+
+      2*p*p
+
+      :
+
+      1-Math.pow(-2*p+2,2)/2;
 
 
     window.scrollTo(
       0,
-      start + distance * e
+      start+distance*e
     );
 
 
-    if(p < 1){
+    if(p<1){
 
-      animationFrame =
+      animationFrame=
         requestAnimationFrame(frame);
 
-    }else{
+    }
 
-      autoScrolling = false;
+    else{
+
+      autoScrolling=false;
 
     }
 
   }
 
 
-  animationFrame =
+  animationFrame=
     requestAnimationFrame(frame);
 
 }
 
 
-// إذا المستخدم لمس الشاشة
+/* =====================================================
+   STOP AUTO SCROLL WHEN USER INTERACTS
+===================================================== */
+
+function stopAutoScroll(){
+
+  if(autoScrolling){
+
+    autoScrolling=false;
+
+    cancelAnimationFrame(
+      animationFrame
+    );
+
+  }
+
+}
+
+
 window.addEventListener(
   "touchstart",
-  function(){
-
-    if(autoScrolling){
-
-      autoScrolling = false;
-
-      cancelAnimationFrame(animationFrame);
-
-    }
-
-  },
+  stopAutoScroll,
   {passive:true}
 );
 
 
-// إذا المستخدم بدأ يحرك إصبعه
 window.addEventListener(
   "touchmove",
-  function(){
-
-    if(autoScrolling){
-
-      autoScrolling = false;
-
-      cancelAnimationFrame(animationFrame);
-
-    }
-
-  },
+  stopAutoScroll,
   {passive:true}
 );
 
 
-// إذا المستخدم استخدم عجلة الماوس
 window.addEventListener(
   "wheel",
-  function(){
-
-    if(autoScrolling){
-
-      autoScrolling = false;
-
-      cancelAnimationFrame(animationFrame);
-
-    }
-
-  },
+  stopAutoScroll,
   {passive:true}
 );
 
 
-// ================================
-// العد التنازلي
-// ================================
+window.addEventListener(
+  "keydown",
+  function(e){
+
+    if(
+      [
+        "ArrowDown",
+        "ArrowUp",
+        "PageDown",
+        "PageUp",
+        "Home",
+        "End",
+        " "
+      ].includes(e.key)
+    ){
+
+      stopAutoScroll();
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   COUNTDOWN
+===================================================== */
 
 const wedding =
   new Date(
@@ -693,7 +1800,7 @@ function ar(n){
 
   return String(n).replace(
     /\d/g,
-    d => "٠١٢٣٤٥٦٧٨٩"[d]
+    d=>"٠١٢٣٤٥٦٧٨٩"[d]
   );
 
 }
@@ -701,41 +1808,53 @@ function ar(n){
 
 function countdown(){
 
-  let d =
+  const difference=
     Math.max(
       0,
-      wedding - Date.now()
+      wedding-Date.now()
     );
 
 
-  document.getElementById("days").textContent =
+  document.getElementById(
+    "days"
+  ).textContent=
+
     ar(
       Math.floor(
-        d / 86400000
+        difference/86400000
       )
     );
 
 
-  document.getElementById("hours").textContent =
+  document.getElementById(
+    "hours"
+  ).textContent=
+
     ar(
       Math.floor(
-        d % 86400000 / 3600000
+        difference%86400000/3600000
       )
     );
 
 
-  document.getElementById("minutes").textContent =
+  document.getElementById(
+    "minutes"
+  ).textContent=
+
     ar(
       Math.floor(
-        d % 3600000 / 60000
+        difference%3600000/60000
       )
     );
 
 
-  document.getElementById("seconds").textContent =
+  document.getElementById(
+    "seconds"
+  ).textContent=
+
     ar(
       Math.floor(
-        d % 60000 / 1000
+        difference%60000/1000
       )
     );
 
@@ -744,14 +1863,17 @@ function countdown(){
 
 countdown();
 
+
 setInterval(
   countdown,
   1000
 );
 
+
 </script>
 
+
 </body>
+
 </html>
 ```
-
